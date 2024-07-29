@@ -20,7 +20,7 @@
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
-        <div id="unity-fullscreen-button"></div>
+<!--        <div id="unity-fullscreen-button"></div>-->
         <div id="unity-build-title">А4 Пол- это лава!</div>
       </div>
     </div>
@@ -101,10 +101,10 @@
         {
           gameInstance = unityInstance;
           loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => 
-          {
-            unityInstance.SetFullscreen(1);
-          };
+          // fullscreenButton.onclick = () => 
+          // {
+          //   // unityInstance.SetFullscreen(1);
+          // };
         }).catch((message) => 
         {
           alert(message);
