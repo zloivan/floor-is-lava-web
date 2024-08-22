@@ -10,8 +10,8 @@
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600></canvas>
+  <div id="unity-container" style = "position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
+    <canvas id="unity-canvas" style = "position: absolute; width: 100%; height: 100%;"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -53,11 +53,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/pc-floor-is-lava-web.loader.js";
+      var loaderUrl = buildUrl + "/PCBuild.loader.js";
       var config = {
-        dataUrl: buildUrl + "/pc-floor-is-lava-web.data.unityweb",
-        frameworkUrl: buildUrl + "/pc-floor-is-lava-web.framework.js.unityweb",
-        codeUrl: buildUrl + "/pc-floor-is-lava-web.wasm.unityweb",
+        dataUrl: buildUrl + "/PCBuild.data.unityweb",
+        frameworkUrl: buildUrl + "/PCBuild.framework.js.unityweb",
+        codeUrl: buildUrl + "/PCBuild.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "REDTOWER, OOO",
         productName: "А4 Пол- это лава!",
@@ -72,16 +72,19 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) 
+      {
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
-        //unityShowBanner('WebGL builds are not supported on mobile devices.');
-      } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
+      } 
+        else 
+        {
+          canvas.style.width = "100%";
+          canvas.style.height = "100%";
+        }
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
